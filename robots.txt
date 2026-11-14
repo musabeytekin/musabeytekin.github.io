@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://musabeytekin.github.io/sitemap.xml

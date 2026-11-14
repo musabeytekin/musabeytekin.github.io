@@ -1,0 +1,570 @@
+:root {
+  --paper: #f2f4f8;
+  --surface: #ffffff;
+  --ink: #121a2d;
+  --muted: #525d78;
+  --line: #d3dae6;
+  --accent: #1d3fcf;
+  --accent-ink: #ffffff;
+  --signal: #a85f00;
+  --display: "Bricolage Grotesque", "Avenir Next Condensed", "Helvetica Neue", Arial, sans-serif;
+  --body: "Instrument Sans", "Helvetica Neue", Arial, sans-serif;
+  --mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  --margin-col: 13rem;
+  --gap: 2.5rem;
+  color-scheme: light dark;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --paper: #0c1220;
+    --surface: #141c30;
+    --ink: #e9edf6;
+    --muted: #9ba6c0;
+    --line: #27314b;
+    --accent: #a3b6ff;
+    --accent-ink: #0c1220;
+    --signal: #f1b54a;
+  }
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--body);
+  font-size: 1.0625rem;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: var(--accent);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.2em;
+}
+
+a:hover {
+  text-decoration-thickness: 2px;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 3px;
+}
+
+h1,
+h2,
+h3,
+p,
+ul,
+ol,
+dl,
+dd {
+  margin: 0;
+}
+
+ul,
+ol {
+  padding: 0;
+  list-style: none;
+}
+
+code {
+  font-family: var(--mono);
+  font-size: 0.88em;
+}
+
+.wrap {
+  max-width: 72rem;
+  margin-inline: auto;
+  padding-inline: 1.5rem;
+}
+
+.skip {
+  position: absolute;
+  left: 1rem;
+  top: -4rem;
+  background: var(--surface);
+  padding: 0.5rem 0.9rem;
+  border-radius: 6px;
+}
+
+.skip:focus {
+  top: 1rem;
+}
+
+/* Top bar */
+
+.top {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 1.5rem;
+  padding-block: 1.4rem;
+  font-size: 0.95rem;
+}
+
+.top nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem 1.5rem;
+}
+
+.top a {
+  color: var(--muted);
+  text-decoration: none;
+}
+
+.top a:hover {
+  color: var(--ink);
+  text-decoration: underline;
+}
+
+.top .lang {
+  color: var(--ink);
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+/* Hero */
+
+.hero {
+  padding-block: clamp(2.5rem, 7vw, 5.5rem) clamp(3rem, 7vw, 5.5rem);
+}
+
+.hero h1 {
+  font-family: var(--display);
+  font-weight: 700;
+  font-stretch: 78%;
+  font-size: clamp(3.4rem, 12.2vw, 9.25rem);
+  line-height: 0.88;
+  letter-spacing: -0.035em;
+  margin-left: -0.04em;
+}
+
+.hero-text {
+  margin-top: clamp(1.75rem, 4vw, 3rem);
+  margin-left: calc(var(--margin-col) + var(--gap));
+  max-width: 40rem;
+}
+
+.role {
+  font-family: var(--display);
+  font-size: clamp(1.3rem, 2.4vw, 1.6rem);
+  font-weight: 600;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+}
+
+.summary {
+  margin-top: 1rem;
+  color: var(--muted);
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.8rem 1.6rem;
+  margin-top: 1.9rem;
+}
+
+.button {
+  display: inline-block;
+  background: var(--accent);
+  color: var(--accent-ink);
+  font-weight: 600;
+  text-decoration: none;
+  padding: 0.7rem 1.2rem;
+  border-radius: 8px;
+}
+
+.button:hover {
+  filter: brightness(1.12);
+}
+
+/* Sections: heading in the margin, content beside it */
+
+.block {
+  display: grid;
+  grid-template-columns: var(--margin-col) minmax(0, 1fr);
+  column-gap: var(--gap);
+  row-gap: 1.5rem;
+  padding-block: clamp(2.5rem, 5vw, 3.75rem);
+  border-top: 1px solid var(--line);
+}
+
+.block > h2 {
+  grid-column: 1;
+  font-family: var(--display);
+  font-size: 1.2rem;
+  font-weight: 700;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+}
+
+.block > .content {
+  grid-column: 2;
+  max-width: 43rem;
+}
+
+.block > .wide {
+  grid-column: 1 / -1;
+}
+
+.content > * + * {
+  margin-top: 1rem;
+}
+
+.lead {
+  font-size: 1.2rem;
+  line-height: 1.5;
+}
+
+h3 {
+  font-family: var(--display);
+  font-size: 1.15rem;
+  font-weight: 700;
+  line-height: 1.3;
+  letter-spacing: -0.005em;
+}
+
+.when {
+  color: var(--muted);
+  font-size: 0.95rem;
+  margin-top: 0.15rem;
+}
+
+.note {
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.points li {
+  position: relative;
+  padding-left: 1.1rem;
+}
+
+.points li + li {
+  margin-top: 0.45rem;
+}
+
+.points li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.68em;
+  width: 0.4rem;
+  height: 2px;
+  background: var(--muted);
+}
+
+.entry + .entry {
+  margin-top: 2.25rem;
+}
+
+.entry .points {
+  margin-top: 0.8rem;
+}
+
+.models {
+  font-family: var(--mono);
+  font-size: 0.86rem;
+  line-height: 1.7;
+  color: var(--muted);
+}
+
+/* One run, drawn as a line with stops */
+
+.run {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: clamp(1.4rem, 3vw, 2.25rem);
+}
+
+.run h3 {
+  margin-bottom: 1.75rem;
+}
+
+.track {
+  --dot: 1.75rem;
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  counter-reset: stop;
+}
+
+.track::before,
+.track::after {
+  content: "";
+  position: absolute;
+  top: calc(var(--dot) / 2 - 1px);
+  left: 0;
+  width: calc(100% / 6 * 5 + var(--dot) / 2);
+  height: 2px;
+  background: var(--line);
+}
+
+.track::after {
+  background: var(--accent);
+  transform-origin: left center;
+}
+
+.track li {
+  position: relative;
+  counter-increment: stop;
+  padding: calc(var(--dot) + 0.9rem) 1.1rem 0 0;
+  font-size: 0.93rem;
+  line-height: 1.5;
+  color: var(--muted);
+}
+
+.track li::before {
+  content: counter(stop);
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  width: var(--dot);
+  height: var(--dot);
+  border-radius: 50%;
+  background: var(--accent);
+  border: 2px solid var(--accent);
+  color: var(--accent-ink);
+  font-size: 0.8rem;
+  font-weight: 700;
+  line-height: calc(var(--dot) - 4px);
+  text-align: center;
+}
+
+.track strong {
+  display: block;
+  color: var(--ink);
+  font-family: var(--display);
+  font-size: 1.02rem;
+  line-height: 1.3;
+  margin-bottom: 0.3rem;
+}
+
+/* The stop where a person steps in */
+.track li.person::before {
+  background: var(--surface);
+  border-color: var(--signal);
+  color: var(--signal);
+}
+
+.track li.person strong {
+  color: var(--signal);
+}
+
+/* Played once when the track scrolls into view; the script adds these classes */
+.track.waiting::after {
+  transform: scaleX(0);
+}
+
+.track.waiting li::before {
+  background: var(--surface);
+  border-color: var(--line);
+  color: var(--muted);
+}
+
+.track.playing::after {
+  animation: travel 2.4s cubic-bezier(0.45, 0, 0.25, 1) both;
+}
+
+.track.playing li::before {
+  animation: arrive 0.35s ease-out both;
+  animation-delay: calc(var(--i) * 0.42s);
+}
+
+.track.playing li.person::before {
+  animation-name: arrive-person;
+}
+
+@keyframes travel {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+@keyframes arrive {
+  from {
+    background: var(--surface);
+    border-color: var(--line);
+    color: var(--muted);
+  }
+  to {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: var(--accent-ink);
+  }
+}
+
+@keyframes arrive-person {
+  from {
+    border-color: var(--line);
+    color: var(--muted);
+  }
+  to {
+    border-color: var(--signal);
+    color: var(--signal);
+  }
+}
+
+/* Skills and facts */
+
+.facts {
+  display: grid;
+  grid-template-columns: 11rem minmax(0, 1fr);
+  gap: 0.7rem 1.5rem;
+}
+
+.facts dt {
+  font-weight: 600;
+}
+
+.facts dd {
+  color: var(--muted);
+}
+
+.facts dd strong {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+/* Contact */
+
+.mail {
+  font-family: var(--display);
+  font-size: clamp(1.35rem, 3.6vw, 2.1rem);
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  overflow-wrap: anywhere;
+}
+
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.6rem;
+}
+
+footer {
+  border-top: 1px solid var(--line);
+  padding-block: 1.75rem 3rem;
+  color: var(--muted);
+  font-size: 0.92rem;
+}
+
+/* Narrow screens: one column, the track turns vertical */
+
+@media (max-width: 56rem) {
+  .block {
+    grid-template-columns: minmax(0, 1fr);
+    row-gap: 1.1rem;
+  }
+
+  .block > h2,
+  .block > .content {
+    grid-column: 1;
+  }
+
+  .block > h2 {
+    font-size: 1.45rem;
+  }
+
+  .hero-text {
+    margin-left: 0;
+  }
+
+  .track {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .track::before,
+  .track::after {
+    top: 0;
+    left: calc(var(--dot) / 2 - 1px);
+    width: 2px;
+    height: calc(100% - var(--last, 5rem));
+  }
+
+  .track::after {
+    transform-origin: center top;
+  }
+
+  .track li {
+    padding: 0.15rem 0 1.5rem calc(var(--dot) + 1rem);
+  }
+
+  .track li:last-child {
+    padding-bottom: 0;
+  }
+
+  .track.waiting::after {
+    transform: scaleY(0);
+  }
+
+  .track.playing::after {
+    animation-name: travel-down;
+  }
+
+  .facts {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0.15rem;
+  }
+
+  .facts dd {
+    margin-bottom: 0.8rem;
+  }
+}
+
+@keyframes travel-down {
+  from {
+    transform: scaleY(0);
+  }
+  to {
+    transform: scaleY(1);
+  }
+}
+
+@media (max-width: 30rem) {
+  .top nav {
+    gap: 0.2rem 1rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+@media print {
+  .top,
+  .actions,
+  .skip {
+    display: none;
+  }
+
+  body {
+    background: #fff;
+    font-size: 11pt;
+  }
+}
