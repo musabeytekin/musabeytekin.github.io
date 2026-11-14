@@ -1,16 +1,7 @@
+// Draws the run line once, the first time it scrolls into view.
 (function () {
   var track = document.querySelector(".track");
-  if (!track) return;
-
-  // On narrow screens the line is vertical and ends at the last stop's dot.
-  function measure() {
-    track.style.setProperty("--last", track.lastElementChild.offsetHeight + "px");
-  }
-  measure();
-  window.addEventListener("resize", measure);
-
-  // Play the line once, the first time the track scrolls into view.
-  if (!("IntersectionObserver" in window)) return;
+  if (!track || !("IntersectionObserver" in window)) return;
   if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
   track.classList.add("waiting");
@@ -21,7 +12,7 @@
       track.classList.remove("waiting");
       track.classList.add("playing");
     },
-    { threshold: 0.35 }
+    { threshold: 0.3 }
   );
   observer.observe(track);
 })();

@@ -18,12 +18,12 @@
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="theme-color" content="#f2f4f8" media="(prefers-color-scheme: light)">
-  <meta name="theme-color" content="#0c1220" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#fdfdfc" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#131312" media="(prefers-color-scheme: dark)">
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,400..800&family=Instrument+Sans:wght@400..700&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400..500&family=Instrument+Sans:wght@400..600&display=swap">
   <link rel="stylesheet" href="assets/site.css">
   <script type="application/ld+json">
   {
@@ -42,74 +42,83 @@
 <body>
   <a class="skip" href="#main">Skip to content</a>
 
-  <header class="top wrap">
-    <nav aria-label="Sections">
-        <a href="#exradius">Exradius</a>
-        <a href="#thesis">Thesis</a>
-        <a href="#experience">Experience</a>
-        <a href="#skills">Skills</a>
-        <a href="#contact">Contact</a>
+  <header class="wrap">
+    <nav class="top" aria-label="Language">
+      <span aria-current="true" lang="en">English</span>
+      <a href="tr/" lang="tr" hreflang="tr">Türkçe</a>
     </nav>
-    <a class="lang" href="tr/" lang="tr" hreflang="tr">Türkçe</a>
   </header>
 
   <main id="main">
     <section class="hero wrap">
       <h1>Musa Beytekin</h1>
-      <div class="hero-text">
-        <p class="role">AI engineer building LLM agent systems, their evaluation, and the backend they run on.</p>
-        <p class="summary">I designed and built Exradius, an open-source platform that runs AI agents in isolated environments on Kubernetes. In my MSc thesis I compared 10 open-weight LLMs on speed, reliability, linguistic quality and emotion scoring. At Turkish Airlines I work on reservation systems that process about 1,000 records per second.</p>
-        <ul class="actions">
-          <li><a class="button" href="cv/Musa_Beytekin_CV_EN.pdf">Download CV (PDF)</a></li>
-          <li><a href="https://github.com/musabeytekin">GitHub</a></li>
-          <li><a href="https://www.linkedin.com/in/musabeytekin">LinkedIn</a></li>
-          <li><a href="mailto:musabeytekin867@gmail.com">Email</a></li>
-        </ul>
-      </div>
+      <p class="place">AI engineer, Türkiye</p>
+      <p class="lead">I build LLM agent systems, the evaluation around them, and the backend they run on.</p>
+      <p class="summary">I designed and built <a href="#exradius">Exradius</a>, an open-source platform that runs AI agents in isolated environments on Kubernetes. For my <a href="#thesis">MSc thesis</a> I compared 10 open-weight LLMs on speed, reliability, linguistic quality and emotion scoring. At Turkish Airlines I work on reservation systems that process about 1,000 records per second.</p>
+      <ul class="actions">
+        <li><a class="button" href="cv/Musa_Beytekin_CV_EN.pdf">Download CV (PDF)</a></li>
+        <li><a href="https://github.com/musabeytekin">GitHub</a></li>
+        <li><a href="https://www.linkedin.com/in/musabeytekin">LinkedIn</a></li>
+        <li><a href="mailto:musabeytekin867@gmail.com">Email</a></li>
+      </ul>
     </section>
 
     <section class="block wrap" id="exradius">
-      <h2>Exradius</h2>
+      <h2>Open source</h2>
       <div class="content">
-        <p class="lead">An open-source, self-hosted platform that runs AI agents on a company's own code. Every task gets its own locked-down Kubernetes pod. The agent works there, asks a person when it needs to, and delivers a branch or a patch.</p>
-        <p>I designed and built all of it: the API and worker, the Kubernetes operator, the egress proxy, the admin panel and the install.</p>
-      </div>
-      <div class="run wide">
-        <h3>One run, start to finish</h3>
+        <h3>Exradius</h3>
+        <p class="note">A self-hosted platform for running AI agents. Apache-2.0.</p>
+        <p>Exradius runs AI agents on a company's own code. Every task gets its own locked-down Kubernetes pod. The agent works there, asks a person when it needs to, and delivers a branch or a patch.</p>
+        <p>I designed and built all of it. The <a href="https://github.com/musabeytekin/exradius">source</a> and the <a href="https://github.com/musabeytekin/exradius/blob/main/docs/architecture.md">design notes</a> are on GitHub.</p>
+        <h4>One run, start to finish</h4>
         <ol class="track">
-          <li style="--i: 0"><strong>A task arrives</strong>A message on a RabbitMQ queue names a project and an agent. Bridges for Jira and GitHub put it there.</li>
-          <li style="--i: 1"><strong>The config is read</strong>The worker reads the project's <code>exradius.yaml</code> from its git repository and creates a Run.</li>
-          <li style="--i: 2"><strong>A pod starts</strong>An operator written in Go builds one pod for the run: non-root, read-only filesystem, no capabilities, no cluster credentials.</li>
-          <li style="--i: 3"><strong>The agent works</strong>The runner drives it through the Claude Agent SDK. Its traffic passes an egress proxy that allows only listed hosts.</li>
-          <li class="person" style="--i: 4"><strong>A person answers</strong>The agent can ask a question through an MCP tool. Once someone answers, the session resumes in the same pod.</li>
-          <li style="--i: 5"><strong>The result goes out</strong>The agent pushes a branch or attaches a patch. Status and the result are published as events.</li>
+          <li style="--i: 0"><strong>A task arrives</strong><span>A message on a RabbitMQ queue names a project and an agent. Bridges for Jira and GitHub put it there.</span></li>
+          <li style="--i: 1"><strong>The config is read</strong><span>The worker reads the project's <code>exradius.yaml</code> from its git repository and creates a Run.</span></li>
+          <li style="--i: 2"><strong>A pod starts</strong><span>An operator builds one pod for the run: non-root, read-only filesystem, no capabilities, no cluster credentials.</span></li>
+          <li style="--i: 3"><strong>The agent works</strong><span>The runner drives it through the Claude Agent SDK. Its traffic passes an egress proxy that allows only listed hosts.</span></li>
+          <li class="person" style="--i: 4"><strong>A person answers</strong><span>The agent can ask a question through an MCP tool. Once someone answers, the session resumes in the same pod.</span></li>
+          <li style="--i: 5"><strong>The result goes out</strong><span>The agent pushes a branch or attaches a patch. Status and the result are published as events.</span></li>
         </ol>
-      </div>
-      <div class="content">
-        <h3>What I built</h3>
-        <ul class="points">
-          <li>API and worker in Python (FastAPI, PostgreSQL, RabbitMQ). Every state change is stored with its event in one transaction, and the event is published after commit.</li>
-          <li>A Kubernetes operator in Go (controller-runtime) with custom resources for runs and image builds.</li>
-          <li>An egress proxy in Go that adds the model key and repository credentials to requests on the way out, so no pod ever holds them.</li>
-          <li>The runner and its built-in MCP server: ask a person, submit the result, attach files.</li>
-          <li>An admin panel in React and TypeScript.</li>
-          <li>A Helm chart, and Terraform modules for AWS (EKS), GCP (GKE) and Azure (AKS).</li>
-          <li>Secret stores kept encrypted in PostgreSQL or read from HashiCorp Vault.</li>
-          <li>A Claude Code skill that sets a codebase up for Exradius, and an evaluation set of real upstream bug fixes for measuring agents (in progress).</li>
-        </ul>
-        <p><a href="https://github.com/musabeytekin/exradius">Source on GitHub</a> <span class="note">Apache-2.0 license.</span></p>
+        <h4>What I built</h4>
+        <dl class="rows">
+          <dt><a href="https://github.com/musabeytekin/exradius/tree/main/backend">API and worker</a></dt>
+          <dd>Python, FastAPI, PostgreSQL and RabbitMQ. Every state change is stored with its event in one transaction and published after commit.</dd>
+          <dt><a href="https://github.com/musabeytekin/exradius/tree/main/operator">Operator</a></dt>
+          <dd>Go and controller-runtime, with custom resources for runs and image builds.</dd>
+          <dt><a href="https://github.com/musabeytekin/exradius/tree/main/egress">Egress proxy</a></dt>
+          <dd>Go, standard library only. It adds the model key and repository credentials on the way out, so no pod ever holds them.</dd>
+          <dt><a href="https://github.com/musabeytekin/exradius/tree/main/backend/exradius/runner">Runner</a></dt>
+          <dd>Drives the agent through the Claude Agent SDK and hosts an MCP server: ask a person, submit the result, attach files.</dd>
+          <dt><a href="https://github.com/musabeytekin/exradius/tree/main/frontend">Admin panel</a></dt>
+          <dd>React and TypeScript.</dd>
+          <dt><a href="https://github.com/musabeytekin/exradius/tree/main/charts/exradius">Install</a></dt>
+          <dd>A Helm chart, and <a href="https://github.com/musabeytekin/exradius/tree/main/deploy/terraform">Terraform modules</a> for AWS (EKS), GCP (GKE) and Azure (AKS).</dd>
+          <dt><a href="https://github.com/musabeytekin/exradius/tree/main/backend/exradius/secret_backends">Secret stores</a></dt>
+          <dd>Kept encrypted in PostgreSQL or read from HashiCorp Vault.</dd>
+          <dt><a href="https://github.com/musabeytekin/exradius/tree/main/skill">Setup skill</a></dt>
+          <dd>A Claude Code skill that reads a codebase and sets it up for Exradius.</dd>
+          <dt><a href="https://github.com/musabeytekin/exradius/tree/main/evals">Evaluation set</a></dt>
+          <dd>Real upstream bug fixes for measuring agents. In progress.</dd>
+        </dl>
       </div>
     </section>
 
     <section class="block wrap" id="thesis">
-      <h2>MSc thesis</h2>
+      <h2>Research</h2>
       <div class="content">
         <h3>Which local LLM fits which chat character?</h3>
-        <p class="note">İnönü University, 2026. Official title: Communication Between Interactive Virtual Characters with an AI-Supported Language Learning Application.</p>
+        <p class="note">MSc thesis, İnönü University, 2026. Official title: Communication Between Interactive Virtual Characters with an AI-Supported Language Learning Application.</p>
         <p>Language learners chat with AI characters in the app the thesis proposes: a conversation partner, a language teacher, an emotional-support companion. I investigated which local model is a candidate for each role.</p>
-        <p>I ran 10 open-weight LLMs (4B to 20B parameters) on the same hardware with Ollama and compared them on four groups of measures: response speed, reliability, linguistic quality and emotion scoring.</p>
-        <p>I profiled how each model scores 27 emotions on the GoEmotions (Reddit comments), SST-2 (movie reviews) and TweetEval (tweets) datasets.</p>
-        <p>Across the models, the lowest time to first token was 233 ms, the shortest total response time 2.0 s and the highest generation speed 94 tokens per second.</p>
+        <p>I ran 10 open-weight LLMs (4B to 20B parameters) on the same hardware with Ollama and compared them on four groups of measures: response speed, reliability, linguistic quality and emotion scoring. I also profiled how each model scores 27 emotions on the GoEmotions, SST-2 and TweetEval datasets.</p>
+        <h4>Best result in each speed measure</h4>
+        <dl class="rows">
+          <dt>Time to first token</dt>
+          <dd>233 ms, llama2:7b</dd>
+          <dt>Total response time</dt>
+          <dd>2.0 s, olmo2:7b</dd>
+          <dt>Generation speed</dt>
+          <dd>94 tokens per second, gemma3:4b</dd>
+        </dl>
         <p class="models">Models: gemma3:4b, gemma2:9b, llama2:7b, llama3.1:8b, mistral:7b, qwen2.5:7b, granite3.3:8b, olmo2:7b, olmo-3:7b, gpt-oss:20b</p>
       </div>
     </section>
@@ -119,8 +128,7 @@
       <div class="content">
         <h3>Smart Home Controller AI</h3>
         <p class="note">A multi-agent system in Python and LangChain.</p>
-        <p>A coordinator agent reads a natural-language command such as “turn on the kitchen lights and set the temperature to 22 degrees” and routes each part to a specialist agent for lighting or climate. Only the agents a command needs are called, which keeps token cost low.</p>
-        <p><a href="https://github.com/musabeytekin/smart-home-controller-ai">Source on GitHub</a></p>
+        <p>A coordinator agent reads a natural-language command such as “turn on the kitchen lights and set the temperature to 22 degrees” and routes each part to a specialist agent for lighting or climate. Only the agents a command needs are called, which keeps token cost low. The <a href="https://github.com/musabeytekin/smart-home-controller-ai">source</a> is on GitHub.</p>
       </div>
     </section>
 
@@ -128,8 +136,11 @@
       <h2>Experience</h2>
       <div class="content">
         <article class="entry">
-          <h3>Software Engineer, Turkish Airlines</h3>
-          <p class="when">May 2026 to present, remote</p>
+          <div class="entry-head">
+            <h3>Turkish Airlines</h3>
+            <p class="when">May 2026 – present</p>
+          </div>
+          <p class="note">Software Engineer, remote</p>
           <ul class="points">
             <li>Develop Java and Spring Boot microservices for airline reservation systems that process about 1,000 reservation records per second.</li>
             <li>Added agent registration and permission features to the reservation and sales-agent management systems.</li>
@@ -138,8 +149,11 @@
           </ul>
         </article>
         <article class="entry">
-          <h3>Software Engineer, ID3</h3>
-          <p class="when">May 2024 to May 2026, remote</p>
+          <div class="entry-head">
+            <h3>ID3</h3>
+            <p class="when">May 2024 – May 2026</p>
+          </div>
+          <p class="note">Software Engineer, remote</p>
           <ul class="points">
             <li>Co-developed a multi-node reservation system (Java, Spring Boot, Oracle, event-driven architecture).</li>
             <li>Co-developed a planner that assigns airport tasks automatically.</li>
@@ -153,7 +167,7 @@
     <section class="block wrap" id="skills">
       <h2>Skills</h2>
       <div class="content">
-        <dl class="facts">
+        <dl class="rows">
           <dt>AI and LLM</dt>
           <dd>AI agents, multi-agent workflows, LLM evaluation, Claude Agent SDK, MCP, LangChain, Ollama, OpenAI API, Claude Code</dd>
           <dt>Languages</dt>
@@ -171,11 +185,11 @@
     <section class="block wrap" id="education">
       <h2>Education</h2>
       <div class="content">
-        <dl class="facts">
+        <dl class="rows">
           <dt>MSc, Software Engineering</dt>
-          <dd>İnönü University, 2024 to 2026. Thesis completed, defense pending; expected graduation December 2026.</dd>
+          <dd>İnönü University, 2024 – 2026. Thesis completed, defense pending; expected graduation December 2026.</dd>
           <dt>BSc, Computer Engineering</dt>
-          <dd>İnönü University, 2019 to 2023.</dd>
+          <dd>İnönü University, 2019 – 2023.</dd>
           <dt>Spoken languages</dt>
           <dd>Turkish (native), English (B1).</dd>
         </dl>
@@ -185,11 +199,11 @@
     <section class="block wrap" id="contact">
       <h2>Contact</h2>
       <div class="content">
-        <p>Email is the quickest way to reach me. I am based in Türkiye.</p>
+        <p>Email is the quickest way to reach me.</p>
         <p><a class="mail" href="mailto:musabeytekin867@gmail.com">musabeytekin867@gmail.com</a></p>
         <ul class="links">
-          <li><a href="https://www.linkedin.com/in/musabeytekin">linkedin.com/in/musabeytekin</a></li>
-          <li><a href="https://github.com/musabeytekin">github.com/musabeytekin</a></li>
+          <li><a href="https://www.linkedin.com/in/musabeytekin">LinkedIn</a></li>
+          <li><a href="https://github.com/musabeytekin">GitHub</a></li>
           <li><a href="cv/Musa_Beytekin_CV_EN.pdf">Download CV (PDF)</a></li>
         </ul>
       </div>
@@ -197,7 +211,7 @@
   </main>
 
   <footer class="wrap">
-    <p>Musa Beytekin, 2026.</p>
+    <p>Musa Beytekin, 2026. The <a href="https://github.com/musabeytekin/musabeytekin.github.io">source of this site</a> is on GitHub.</p>
   </footer>
 
   <script src="assets/site.js" defer></script>

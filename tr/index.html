@@ -18,12 +18,12 @@
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="theme-color" content="#f2f4f8" media="(prefers-color-scheme: light)">
-  <meta name="theme-color" content="#0c1220" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#fdfdfc" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#131312" media="(prefers-color-scheme: dark)">
   <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,400..800&family=Instrument+Sans:wght@400..700&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400..500&family=Instrument+Sans:wght@400..600&display=swap">
   <link rel="stylesheet" href="../assets/site.css">
   <script type="application/ld+json">
   {
@@ -42,74 +42,83 @@
 <body>
   <a class="skip" href="#main">İçeriğe geç</a>
 
-  <header class="top wrap">
-    <nav aria-label="Bölümler">
-        <a href="#exradius">Exradius</a>
-        <a href="#thesis">Tez</a>
-        <a href="#experience">Deneyim</a>
-        <a href="#skills">Yetenekler</a>
-        <a href="#contact">İletişim</a>
+  <header class="wrap">
+    <nav class="top" aria-label="Dil">
+      <a href="../" lang="en" hreflang="en">English</a>
+      <span aria-current="true" lang="tr">Türkçe</span>
     </nav>
-    <a class="lang" href="../" lang="en" hreflang="en">English</a>
   </header>
 
   <main id="main">
     <section class="hero wrap">
       <h1>Musa Beytekin</h1>
-      <div class="hero-text">
-        <p class="role">LLM agent sistemleri kuran, değerlendiren ve altındaki backend'i yazan AI mühendisi.</p>
-        <p class="summary">AI agent'larını Kubernetes üzerinde izole ortamlarda çalıştıran açık kaynak platform Exradius'u tasarlayıp geliştirdim. Yüksek lisans tezimde 10 açık ağırlıklı LLM'i hız, güvenilirlik, dilsel kalite ve duygu puanlama açısından karşılaştırdım. Türk Hava Yolları'nda saniyede yaklaşık 1.000 kayıt işleyen rezervasyon sistemlerinde çalışıyorum.</p>
-        <ul class="actions">
-          <li><a class="button" href="../cv/Musa_Beytekin_CV_TR.pdf">CV'yi indir (PDF)</a></li>
-          <li><a href="https://github.com/musabeytekin">GitHub</a></li>
-          <li><a href="https://www.linkedin.com/in/musabeytekin">LinkedIn</a></li>
-          <li><a href="mailto:musabeytekin867@gmail.com">E-posta</a></li>
-        </ul>
-      </div>
+      <p class="place">AI mühendisi, Türkiye</p>
+      <p class="lead">LLM agent sistemleri kuruyor, onları değerlendiriyor ve altındaki backend'i yazıyorum.</p>
+      <p class="summary">AI agent'larını Kubernetes üzerinde izole ortamlarda çalıştıran açık kaynak platform <a href="#exradius">Exradius</a>'u tasarlayıp geliştirdim. <a href="#thesis">Yüksek lisans tezimde</a> 10 açık ağırlıklı LLM'i hız, güvenilirlik, dilsel kalite ve duygu puanlama açısından karşılaştırdım. Türk Hava Yolları'nda saniyede yaklaşık 1.000 kayıt işleyen rezervasyon sistemlerinde çalışıyorum.</p>
+      <ul class="actions">
+        <li><a class="button" href="../cv/Musa_Beytekin_CV_TR.pdf">CV'yi indir (PDF)</a></li>
+        <li><a href="https://github.com/musabeytekin">GitHub</a></li>
+        <li><a href="https://www.linkedin.com/in/musabeytekin">LinkedIn</a></li>
+        <li><a href="mailto:musabeytekin867@gmail.com">E-posta</a></li>
+      </ul>
     </section>
 
     <section class="block wrap" id="exradius">
-      <h2>Exradius</h2>
+      <h2>Açık kaynak</h2>
       <div class="content">
-        <p class="lead">AI agent'larını bir şirketin kendi kodu üzerinde çalıştıran, açık kaynak ve self-hosted bir platform. Her görev kendi sıkılaştırılmış Kubernetes pod'unda çalışır. Agent işini orada yapar, gerektiğinde bir insana sorar ve sonunda bir branch ya da patch teslim eder.</p>
-        <p>Tamamını ben tasarlayıp geliştirdim: API ve worker, Kubernetes operator, egress proxy, yönetim paneli ve kurulum.</p>
-      </div>
-      <div class="run wide">
-        <h3>Bir çalıştırma, baştan sona</h3>
+        <h3>Exradius</h3>
+        <p class="note">AI agent'larını çalıştıran self-hosted platform. Apache-2.0.</p>
+        <p>Exradius, AI agent'larını bir şirketin kendi kodu üzerinde çalıştırır. Her görev kendi sıkılaştırılmış Kubernetes pod'unda çalışır. Agent işini orada yapar, gerektiğinde bir insana sorar ve sonunda bir branch ya da patch teslim eder.</p>
+        <p>Tamamını ben tasarlayıp geliştirdim. <a href="https://github.com/musabeytekin/exradius">Kaynak kod</a> ve <a href="https://github.com/musabeytekin/exradius/blob/main/docs/architecture.md">tasarım notları</a> GitHub'da.</p>
+        <h4>Bir çalıştırma, baştan sona</h4>
         <ol class="track">
-          <li style="--i: 0"><strong>Görev gelir</strong>RabbitMQ kuyruğuna düşen mesaj bir proje ve bir agent adı taşır. Mesajı Jira ve GitHub bridge'leri gönderir.</li>
-          <li style="--i: 1"><strong>Config okunur</strong>Worker projenin git deposundaki <code>exradius.yaml</code> dosyasını okur ve bir Run oluşturur.</li>
-          <li style="--i: 2"><strong>Pod açılır</strong>Go ile yazılmış operator çalıştırma için tek bir pod kurar: root'suz, salt okunur dosya sistemi, capability yok, cluster yetkisi yok.</li>
-          <li style="--i: 3"><strong>Agent çalışır</strong>Runner agent'ı Claude Agent SDK üzerinden yürütür. Trafiği, yalnızca izinli adreslere açılan bir egress proxy'den geçer.</li>
-          <li class="person" style="--i: 4"><strong>İnsan yanıtlar</strong>Agent bir MCP aracıyla soru sorabilir. Yanıt gelince oturum aynı pod'da kaldığı yerden sürer.</li>
-          <li style="--i: 5"><strong>Sonuç çıkar</strong>Agent bir branch push eder ya da patch ekler. Durum ve sonuç, olay olarak yayınlanır.</li>
+          <li style="--i: 0"><strong>Görev gelir</strong><span>RabbitMQ kuyruğuna düşen mesaj bir proje ve bir agent adı taşır. Mesajı Jira ve GitHub bridge'leri gönderir.</span></li>
+          <li style="--i: 1"><strong>Config okunur</strong><span>Worker projenin git deposundaki <code>exradius.yaml</code> dosyasını okur ve bir Run oluşturur.</span></li>
+          <li style="--i: 2"><strong>Pod açılır</strong><span>Operator çalıştırma için tek bir pod kurar: root'suz, salt okunur dosya sistemi, capability yok, cluster yetkisi yok.</span></li>
+          <li style="--i: 3"><strong>Agent çalışır</strong><span>Runner agent'ı Claude Agent SDK üzerinden yürütür. Trafiği, yalnızca izinli adreslere açılan bir egress proxy'den geçer.</span></li>
+          <li class="person" style="--i: 4"><strong>İnsan yanıtlar</strong><span>Agent bir MCP aracıyla soru sorabilir. Yanıt gelince oturum aynı pod'da kaldığı yerden sürer.</span></li>
+          <li style="--i: 5"><strong>Sonuç çıkar</strong><span>Agent bir branch push eder ya da patch ekler. Durum ve sonuç, olay olarak yayınlanır.</span></li>
         </ol>
-      </div>
-      <div class="content">
-        <h3>Neler geliştirdim</h3>
-        <ul class="points">
-          <li>Python ile API ve worker (FastAPI, PostgreSQL, RabbitMQ). Her durum değişikliği olayıyla birlikte tek transaction'da saklanır, olay commit'ten sonra yayınlanır.</li>
-          <li>Go ile Kubernetes operator (controller-runtime); çalıştırmalar ve imaj build'leri için custom resource'lar.</li>
-          <li>Go ile egress proxy: model anahtarını ve depo kimlik bilgilerini isteğe çıkışta ekler, böylece hiçbir pod bunları tutmaz.</li>
-          <li>Runner ve içindeki MCP sunucusu: insana soru sorma, sonuç teslimi, dosya ekleri.</li>
-          <li>React ve TypeScript ile yönetim paneli.</li>
-          <li>Helm chart ve AWS (EKS), GCP (GKE), Azure (AKS) için Terraform modülleri.</li>
-          <li>PostgreSQL'de şifreli tutulan ya da HashiCorp Vault'tan okunan secret store'lar.</li>
-          <li>Bir kod tabanını Exradius'a kuran Claude Code skill'i ve agent'ları ölçmek için gerçek upstream hata düzeltmelerinden oluşan değerlendirme seti (devam ediyor).</li>
-        </ul>
-        <p><a href="https://github.com/musabeytekin/exradius">GitHub'da kaynak kod</a> <span class="note">Apache-2.0 lisansı.</span></p>
+        <h4>Neler geliştirdim</h4>
+        <dl class="rows">
+          <dt><a href="https://github.com/musabeytekin/exradius/tree/main/backend">API ve worker</a></dt>
+          <dd>Python, FastAPI, PostgreSQL ve RabbitMQ. Her durum değişikliği olayıyla birlikte tek transaction'da saklanır ve commit'ten sonra yayınlanır.</dd>
+          <dt><a href="https://github.com/musabeytekin/exradius/tree/main/operator">Operator</a></dt>
+          <dd>Go ve controller-runtime; çalıştırmalar ve imaj build'leri için custom resource'lar.</dd>
+          <dt><a href="https://github.com/musabeytekin/exradius/tree/main/egress">Egress proxy</a></dt>
+          <dd>Go, yalnızca standart kütüphane. Model anahtarını ve depo kimlik bilgilerini isteğe çıkışta ekler, böylece hiçbir pod bunları tutmaz.</dd>
+          <dt><a href="https://github.com/musabeytekin/exradius/tree/main/backend/exradius/runner">Runner</a></dt>
+          <dd>Agent'ı Claude Agent SDK üzerinden yürütür ve bir MCP sunucusu barındırır: insana soru sorma, sonuç teslimi, dosya ekleri.</dd>
+          <dt><a href="https://github.com/musabeytekin/exradius/tree/main/frontend">Yönetim paneli</a></dt>
+          <dd>React ve TypeScript.</dd>
+          <dt><a href="https://github.com/musabeytekin/exradius/tree/main/charts/exradius">Kurulum</a></dt>
+          <dd>Helm chart ve AWS (EKS), GCP (GKE), Azure (AKS) için <a href="https://github.com/musabeytekin/exradius/tree/main/deploy/terraform">Terraform modülleri</a>.</dd>
+          <dt><a href="https://github.com/musabeytekin/exradius/tree/main/backend/exradius/secret_backends">Secret store'lar</a></dt>
+          <dd>PostgreSQL'de şifreli tutulur ya da HashiCorp Vault'tan okunur.</dd>
+          <dt><a href="https://github.com/musabeytekin/exradius/tree/main/skill">Kurulum skill'i</a></dt>
+          <dd>Bir kod tabanını okuyup Exradius'a kuran Claude Code skill'i.</dd>
+          <dt><a href="https://github.com/musabeytekin/exradius/tree/main/evals">Değerlendirme seti</a></dt>
+          <dd>Agent'ları ölçmek için gerçek upstream hata düzeltmeleri. Devam ediyor.</dd>
+        </dl>
       </div>
     </section>
 
     <section class="block wrap" id="thesis">
-      <h2>Yüksek lisans tezi</h2>
+      <h2>Araştırma</h2>
       <div class="content">
         <h3>Hangi yerel LLM hangi sohbet karakterine uygun?</h3>
-        <p class="note">İnönü Üniversitesi, 2026. Resmî başlık: Yapay Zeka Destekli Dil Öğrenme Uygulaması ile Etkileşimli Sanal Karakterler Arası İletişim.</p>
+        <p class="note">Yüksek lisans tezi, İnönü Üniversitesi, 2026. Resmî başlık: Yapay Zeka Destekli Dil Öğrenme Uygulaması ile Etkileşimli Sanal Karakterler Arası İletişim.</p>
         <p>Tezin önerdiği uygulamada dil öğrenenler AI karakterlerle mesajlaşıyor: sohbet arkadaşı, dil öğretmeni, duygusal destek. Her role hangi yerel modelin aday olduğunu araştırdım.</p>
-        <p>10 açık ağırlıklı LLM'i (4B ile 20B parametre arası) Ollama ile aynı donanımda çalıştırıp dört ölçüt grubunda karşılaştırdım: yanıt hızı, güvenilirlik, dilsel kalite ve duygu puanlama.</p>
-        <p>GoEmotions (Reddit yorumları), SST-2 (film yorumları) ve TweetEval (tweet'ler) veri setlerinde her modelin 27 duyguyu nasıl puanladığını çıkardım.</p>
-        <p>Modeller arasında en düşük ilk token'a ulaşma süresi 233 ms, en kısa toplam yanıt süresi 2,0 s, en yüksek üretim hızı saniyede 94 token oldu.</p>
+        <p>10 açık ağırlıklı LLM'i (4B ile 20B parametre arası) Ollama ile aynı donanımda çalıştırıp dört ölçüt grubunda karşılaştırdım: yanıt hızı, güvenilirlik, dilsel kalite ve duygu puanlama. Ayrıca GoEmotions, SST-2 ve TweetEval veri setlerinde her modelin 27 duyguyu nasıl puanladığını çıkardım.</p>
+        <h4>Hız ölçütlerinde en iyi sonuçlar</h4>
+        <dl class="rows">
+          <dt>İlk token'a ulaşma</dt>
+          <dd>233 ms, llama2:7b</dd>
+          <dt>Toplam yanıt süresi</dt>
+          <dd>2,0 s, olmo2:7b</dd>
+          <dt>Üretim hızı</dt>
+          <dd>saniyede 94 token, gemma3:4b</dd>
+        </dl>
         <p class="models">Modeller: gemma3:4b, gemma2:9b, llama2:7b, llama3.1:8b, mistral:7b, qwen2.5:7b, granite3.3:8b, olmo2:7b, olmo-3:7b, gpt-oss:20b</p>
       </div>
     </section>
@@ -119,8 +128,7 @@
       <div class="content">
         <h3>Smart Home Controller AI</h3>
         <p class="note">Python ve LangChain ile çoklu agent sistemi.</p>
-        <p>Koordinatör agent “mutfak ışıklarını aç ve sıcaklığı 22 dereceye ayarla” gibi doğal dil komutunu okur ve her parçayı aydınlatma ya da iklimlendirme için uzman agent'a yönlendirir. Yalnızca komutun gerektirdiği agent'lar çağrıldığı için token maliyeti düşük kalır.</p>
-        <p><a href="https://github.com/musabeytekin/smart-home-controller-ai">GitHub'da kaynak kod</a></p>
+        <p>Koordinatör agent “mutfak ışıklarını aç ve sıcaklığı 22 dereceye ayarla” gibi doğal dil komutunu okur ve her parçayı aydınlatma ya da iklimlendirme için uzman agent'a yönlendirir. Yalnızca komutun gerektirdiği agent'lar çağrıldığı için token maliyeti düşük kalır. <a href="https://github.com/musabeytekin/smart-home-controller-ai">Kaynak kod</a> GitHub'da.</p>
       </div>
     </section>
 
@@ -128,8 +136,11 @@
       <h2>Deneyim</h2>
       <div class="content">
         <article class="entry">
-          <h3>Yazılım Mühendisi, Türk Hava Yolları</h3>
-          <p class="when">Mayıs 2026'dan bugüne, uzaktan</p>
+          <div class="entry-head">
+            <h3>Türk Hava Yolları</h3>
+            <p class="when">Mayıs 2026 – bugün</p>
+          </div>
+          <p class="note">Yazılım Mühendisi, uzaktan</p>
           <ul class="points">
             <li>Saniyede yaklaşık 1.000 rezervasyon kaydı işleyen havayolu rezervasyon sistemlerinin Java ve Spring Boot mikroservislerini geliştiriyorum.</li>
             <li>Rezervasyon ve satış acentesi yönetim sistemlerine acente kaydı ve yetkilendirme özellikleri ekledim.</li>
@@ -138,8 +149,11 @@
           </ul>
         </article>
         <article class="entry">
-          <h3>Yazılım Mühendisi, ID3</h3>
-          <p class="when">Mayıs 2024 – Mayıs 2026, uzaktan</p>
+          <div class="entry-head">
+            <h3>ID3</h3>
+            <p class="when">Mayıs 2024 – Mayıs 2026</p>
+          </div>
+          <p class="note">Yazılım Mühendisi, uzaktan</p>
           <ul class="points">
             <li>Çok node'lu bir rezervasyon sistemini ekiple birlikte geliştirdim (Java, Spring Boot, Oracle, olay güdümlü mimari).</li>
             <li>Havalimanı görevlerini otomatik atayan planlayıcıyı ekiple birlikte geliştirdim.</li>
@@ -153,7 +167,7 @@
     <section class="block wrap" id="skills">
       <h2>Yetenekler</h2>
       <div class="content">
-        <dl class="facts">
+        <dl class="rows">
           <dt>AI ve LLM</dt>
           <dd>AI agent'lar, çoklu agent iş akışları, LLM değerlendirme, Claude Agent SDK, MCP, LangChain, Ollama, OpenAI API, Claude Code</dd>
           <dt>Programlama dilleri</dt>
@@ -171,7 +185,7 @@
     <section class="block wrap" id="education">
       <h2>Eğitim</h2>
       <div class="content">
-        <dl class="facts">
+        <dl class="rows">
           <dt>Yüksek Lisans, Yazılım Mühendisliği</dt>
           <dd>İnönü Üniversitesi, 2024 – 2026. Tez tamamlandı, savunma aşamasında; beklenen mezuniyet Aralık 2026.</dd>
           <dt>Lisans, Bilgisayar Mühendisliği</dt>
@@ -185,11 +199,11 @@
     <section class="block wrap" id="contact">
       <h2>İletişim</h2>
       <div class="content">
-        <p>Bana en hızlı e-postayla ulaşabilirsiniz. Türkiye'de yaşıyorum.</p>
+        <p>Bana en hızlı e-postayla ulaşabilirsiniz.</p>
         <p><a class="mail" href="mailto:musabeytekin867@gmail.com">musabeytekin867@gmail.com</a></p>
         <ul class="links">
-          <li><a href="https://www.linkedin.com/in/musabeytekin">linkedin.com/in/musabeytekin</a></li>
-          <li><a href="https://github.com/musabeytekin">github.com/musabeytekin</a></li>
+          <li><a href="https://www.linkedin.com/in/musabeytekin">LinkedIn</a></li>
+          <li><a href="https://github.com/musabeytekin">GitHub</a></li>
           <li><a href="../cv/Musa_Beytekin_CV_TR.pdf">CV'yi indir (PDF)</a></li>
         </ul>
       </div>
@@ -197,7 +211,7 @@
   </main>
 
   <footer class="wrap">
-    <p>Musa Beytekin, 2026.</p>
+    <p>Musa Beytekin, 2026. <a href="https://github.com/musabeytekin/musabeytekin.github.io">Bu sitenin kaynak kodu</a> GitHub'da.</p>
   </footer>
 
   <script src="../assets/site.js" defer></script>
