@@ -5,7 +5,10 @@
 Standard library only. Edit the text in PAGES, run the script and commit the result.
 """
 
+import hashlib
 from pathlib import Path
+
+HERE = Path(__file__).parent
 
 SITE = "https://musabeytekin.github.io/"
 SITE_SOURCE = "https://github.com/musabeytekin/musabeytekin.github.io"
@@ -25,6 +28,12 @@ MODELS = (
     "gemma3:4b, gemma2:9b, llama2:7b, llama3.1:8b, mistral:7b, qwen2.5:7b, "
     "granite3.3:8b, olmo2:7b, olmo-3:7b, gpt-oss:20b"
 )
+
+
+def asset(root, name):
+    """An asset's address with a hash of its content, so a changed file is never served from cache."""
+    digest = hashlib.sha1((HERE / "assets" / name).read_bytes()).hexdigest()[:8]
+    return f"{root}assets/{name}?v={digest}"
 
 
 def link(href, text):
@@ -392,7 +401,7 @@ def page(lang, t):
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="{FONTS}">
-  <link rel="stylesheet" href="{root}assets/site.css">
+  <link rel="stylesheet" href="{asset(root, "site.css")}">
   <script type="application/ld+json">
   {{
     "@context": "https://schema.org",
@@ -513,16 +522,15 @@ def page(lang, t):
     <p>{t["footer"]}</p>
   </footer>
 
-  <script src="{root}assets/site.js" defer></script>
+  <script src="{asset(root, "site.js")}" defer></script>
 </body>
 </html>
 """
 
 
 def main():
-    here = Path(__file__).parent
     for lang, t in PAGES.items():
-        target = here / t["path"]
+        target = HERE / t["path"]
         target.parent.mkdir(exist_ok=True)
         target.write_text(page(lang, t), encoding="utf-8")
         print("wrote", t["path"])
